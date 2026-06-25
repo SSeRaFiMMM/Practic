@@ -1,0 +1,14 @@
+digraph CleaningAlgorithm {
+  graph [rankdir=TB, splines=ortho, nodesep=0.45, ranksep=0.6, bgcolor="white", pad=0.2];
+  node [fontname="DejaVu Sans", fontsize=15, penwidth=1.4, margin="0.16,0.10", color="black"];
+  edge [fontname="DejaVu Sans", fontsize=13, penwidth=1.3, arrowsize=0.8, color="black"];
+  start [label="Начало", shape=oval];
+  input [label="Получить исходный\nSeries raw", shape=parallelogram];
+  convert [label="Преобразовать элементы в числа\npd.to_numeric(errors='coerce')", shape=box];
+  drop [label="Удалить пропуски\ndropna()", shape=box];
+  filter [label="Отфильтровать значения\nпо диапазону [-10000; 10000]", shape=box];
+  cast [label="Привести к int\nи сбросить индекс", shape=box];
+  output [label="Вернуть очищенный\nSeries cleaned", shape=parallelogram];
+  end [label="Конец", shape=oval];
+  start -> input -> convert -> drop -> filter -> cast -> output -> end;
+}
